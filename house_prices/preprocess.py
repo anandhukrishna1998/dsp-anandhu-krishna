@@ -57,7 +57,6 @@ def feature_selection(X_train, y_train):
         for feature in categorical_features}
     top_5_categorical_features = sorted(
         chi2_results, key=chi2_results.get, reverse=True)[:5]
-    print('top_5_categorical_features is ', top_5_categorical_features)
     feature_file_path = ('/home/sachin/DSP/dsp-anandhu-krishna/'
                          'models/features_dictionary.json')
     features_dictionary['top_10_numerical_features'] = \
