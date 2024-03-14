@@ -2,12 +2,11 @@ from .preprocess import clean_and_fill_data
 from .preprocess import preprocess_features
 import joblib
 import os
-import numpy as np
 import pandas as pd
 from . import NUMERICAL_FEATURES, CATEGORICAL_FEATURES
 
 
-def make_predictions(test_data: pd.DataFrame) -> np.ndarray:
+def make_predictions(test_data: pd.DataFrame) -> pd.DataFrame:
     model_dir = '../models'
 
     test_data_ids = test_data['Id'].copy()

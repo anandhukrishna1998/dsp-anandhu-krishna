@@ -8,11 +8,12 @@ import os
 from .preprocess import clean_and_fill_data
 from .preprocess import preprocess_features
 from sklearn.model_selection import train_test_split
+from typing import Dict
 from . import NUMERICAL_FEATURES, CATEGORICAL_FEATURES
 
 
 def train_model(X_train: np.array, y_train: pd.Series,
-                model_dir: str) -> XGBRegressor:
+                model_dir: str) -> None:
     param = {
         'max_depth': 4,
         'objective': 'reg:squarederror',
@@ -33,7 +34,7 @@ def compute_rmsle(y_test: np.ndarray, y_pred: np.ndarray,
     return round(rmsle, precision)
 
 
-def evaluate_performance(y_test, y_pred):
+def evaluate_performance(y_test, y_pred) -> Dict[str, float]:
     rmsle_score = compute_rmsle(np.log(y_test), np.log(y_pred))
     mse = np.mean((y_test - y_pred) ** 2)
     rmse = np.sqrt(mse)
@@ -49,7 +50,7 @@ def evaluate_performance(y_test, y_pred):
     return evaluation_results
 
 
-def model_training(X_train, y_train, model_dir):
+def model_training(X_train, y_train, model_dir) -> None:
     X_train = clean_and_fill_data(X_train)
     X_train_processed = preprocess_features(
         X_train,
@@ -60,7 +61,7 @@ def model_training(X_train, y_train, model_dir):
     train_model(X_train_processed, y_train, model_dir)
 
 
-def model_evaluation(X_test, y_test, model_dir) -> dict[str, str]:
+def model_evaluation(X_test, y_test, model_dir) -> Dict[str, float]:
     X_test = clean_and_fill_data(X_test)
 
     X_test_processed = preprocess_features(
@@ -76,7 +77,7 @@ def model_evaluation(X_test, y_test, model_dir) -> dict[str, str]:
     return evaluation_results
 
 
-def build_model(data: pd.DataFrame) -> dict[str, str]:
+def build_model(data: pd.DataFrame) -> Dict[str, float]:
     model_dir = '../models'
     X = data.drop(columns=['SalePrice'])
     y = data['SalePrice']

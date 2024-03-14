@@ -19,7 +19,8 @@ def clean_and_fill_data(data: pd.DataFrame) -> pd.DataFrame:
     return data
 
 
-def scale_numeric_features(data, numeric_features, model_dir, mode='train'):
+def scale_numeric_features(data, numeric_features, model_dir,
+                           mode='train') -> np.ndarray:
     """
     Scale numeric features.
 
@@ -51,7 +52,7 @@ def scale_numeric_features(data, numeric_features, model_dir, mode='train'):
 
 
 def encode_categorical_features(data, categorical_features,
-                                model_dir, mode='train'):
+                                model_dir, mode='train') -> np.ndarray:
     """
     Encode categorical features.
 
@@ -83,7 +84,7 @@ def encode_categorical_features(data, categorical_features,
 
 
 def preprocess_features(data, numeric_features, categorical_features,
-                        model_dir, mode='train') -> pd.DataFrame:
+                        model_dir, mode='train') -> np.ndarray:
     data_encoded = encode_categorical_features(data, categorical_features,
                                                model_dir, mode)
     data_scaled = scale_numeric_features(data, numeric_features,
