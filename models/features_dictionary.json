@@ -1,1 +1,0 @@
-{"top_10_numerical_features": ["OverallQual", "GrLivArea", "GarageCars", "TotalBsmtSF", "FullBath", "YearBuilt", "YearRemodAdd", "MasVnrArea", "Fireplaces", "BsmtFinSF1"], "top_5_categorical_features": ["Neighborhood", "Exterior2nd", "Exterior1st", "SaleType", "HouseStyle"]}
